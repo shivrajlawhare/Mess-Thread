@@ -1,14 +1,19 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const axios = require('axios');
-const cors = require('cors');
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import mongoose from 'mongoose';
+
+import messRoutes from './routes/messRoutes.js';
+import reviewRoutes from './routes/reviewRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use('/mess', messRoutes);
+app.use('/review', reviewRoutes);
 
 const CONNECTION_URL = 'mongodb://localhost:27017/mess-thread';
 

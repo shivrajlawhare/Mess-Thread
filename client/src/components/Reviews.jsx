@@ -10,11 +10,7 @@ const Reviews = () => {
   const [options, setOptions] = useState(["Option 1", "Option 2", "Option 3"]);
 
   const handleSelectChange = (event) => {
-    if (event.target.value === "add") {
-      setOpen(true);
-    } else {
-      setSelectedValue(event.target.value);
-    }
+    setSelectedValue(event.target.value);
   };
 
   return (

@@ -46,8 +46,9 @@ const AddReview = () => {
   const [discription, setDiscription] = useState("");
   const [rating, setrating] = useState(0);
 
-  const [newMessError, setNewMessError] = useState(false);
+  const [loadingMessArray, setLoadingMessArray] = useState(true);
 
+  const [newMessError, setNewMessError] = useState(false);
   const [messNameError, setMessNameError] = useState(false);
   const [dishNameError, setDishNameError] = useState(false);
   const [fileError, setFileError] = useState(false);
@@ -55,8 +56,13 @@ const AddReview = () => {
   const [sameNameError, setSameNameError] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchMessArray());
-    // console.log(messArray);
+    const fetchMessData = async () => {
+      setLoadingMessArray(true);
+      await dispatch(fetchMessArray());
+      setLoadingMessArray(false);
+    };
+
+    fetchMessData();
   }, [dispatch]);
 
   const handleSelectChange = (event) => {
@@ -111,7 +117,11 @@ const AddReview = () => {
       setNewMessError(true);
       return;
     }
-    if(messArray.some(mess => mess.messName.toLowerCase() === newOption.toLowerCase())){
+    if (
+      messArray.some(
+        (mess) => mess.messName.toLowerCase() === newOption.toLowerCase()
+      )
+    ) {
       setSameNameError(true);
       return;
     }
@@ -204,18 +214,22 @@ const AddReview = () => {
                 fontFamily: "Josefin Sans",
               }}
             >
-              {messArray.map((option, index) => (
-                <MenuItem
-                  key={index}
-                  value={option.messName}
-                  sx={{
-                    fontFamily: "Josefin Sans",
-                    color: "#580000",
-                  }}
-                >
-                  {option.messName}
-                </MenuItem>
-              ))}
+              {loadingMessArray ? (
+                <MenuItem disabled>Loading...</MenuItem>
+              ) : (
+                messArray.map((option, index) => (
+                  <MenuItem
+                    key={index}
+                    value={option.messName}
+                    sx={{
+                      fontFamily: "Josefin Sans",
+                      color: "#580000",
+                    }}
+                  >
+                    {option.messName}
+                  </MenuItem>
+                ))
+              )}
               <MenuItem
                 value="add"
                 sx={{
@@ -444,7 +458,12 @@ const AddReview = () => {
                 if (e.target.value.trim() !== "") {
                   setNewMessError(false);
                 }
-                if(messArray.some(mess => mess.messName.toLowerCase() !== newOption.toLowerCase())){
+                if (
+                  messArray.some(
+                    (mess) =>
+                      mess.messName.toLowerCase() !== newOption.toLowerCase()
+                  )
+                ) {
                   setSameNameError(false);
                 }
               }}
@@ -481,7 +500,6 @@ const AddReview = () => {
                 *This Mess/Restaurant already exists.
               </div>
             )}
-            
           </DialogContent>
           <DialogActions>
             <Button

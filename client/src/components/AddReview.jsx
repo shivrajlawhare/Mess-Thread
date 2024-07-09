@@ -51,7 +51,8 @@ const AddReview = () => {
   const [messNameError, setMessNameError] = useState(false);
   const [dishNameError, setDishNameError] = useState(false);
   const [fileError, setFileError] = useState(false);
-  const [ratingError, setRatingError] = useState();
+  const [ratingError, setRatingError] = useState(false);
+  const [sameNameError, setSameNameError] = useState(false);
 
   useEffect(() => {
     dispatch(fetchMessArray());
@@ -102,11 +103,16 @@ const AddReview = () => {
     setOpen(false);
     setNewOption("");
     setNewMessError(false);
+    setSameNameError(false);
   };
 
   const handleAddOption = async () => {
     if (newOption.trim() === "") {
       setNewMessError(true);
+      return;
+    }
+    if(messArray.some(mess => mess.messName.toLowerCase() === newOption.toLowerCase())){
+      setSameNameError(true);
       return;
     }
     await dispatch(addNewMess({ messName: newOption }));
@@ -438,6 +444,9 @@ const AddReview = () => {
                 if (e.target.value.trim() !== "") {
                   setNewMessError(false);
                 }
+                if(messArray.some(mess => mess.messName.toLowerCase() !== newOption.toLowerCase())){
+                  setSameNameError(false);
+                }
               }}
               sx={{
                 "& .MuiInputLabel-root": {
@@ -467,6 +476,12 @@ const AddReview = () => {
                 *Mess Name can not be empty.
               </div>
             )}
+            {sameNameError && (
+              <div className="text-red-400 text-xs">
+                *This Mess/Restaurant already exists.
+              </div>
+            )}
+            
           </DialogContent>
           <DialogActions>
             <Button

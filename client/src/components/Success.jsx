@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import woohoo from "../assets/woohoo.gif";
+import { Link } from "react-router-dom";
 
 const Success = () => {
   return (
@@ -17,9 +18,11 @@ const Success = () => {
           <div className="font-normal text-lg text-[#EE9393]">
             Your Review is Added !!
           </div>
-          <button className="bg-[#982323] hover:bg-[#580000] mt-20 rounded-md py-3 text-2xl text-white font-normal w-[80%]">
+          <Link className="text-center bg-[#982323] hover:bg-[#580000] rounded-md py-3 text-2xl text-white font-normal w-[80%]" to="/home">Back to home</Link>
+
+          {/* <button className="bg-[#982323] hover:bg-[#580000] mt-20 rounded-md py-3 text-2xl text-white font-normal w-[80%]">
             Back to home
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

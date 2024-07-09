@@ -5,6 +5,34 @@ import Home from "./components/Home";
 import AddReview from "./components/AddReview";
 import Success from "./components/Success";
 import Reviews from "./components/Reviews";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LandingPage />,
+  },
+  {
+    path: "/home",
+    element: <Home />,
+  },
+  {
+    path: "/add-review",
+    element: <AddReview />,
+  },
+  {
+    path: "/success",
+    element: <Success />,
+  },
+  {
+    path: "/reviews",
+    element: <Reviews />,
+  },
+  
+]);
 
 function App() {
   return (
@@ -13,10 +41,11 @@ function App() {
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         {/* < LandingPage /> */}
-         {/* < Home /> */}
-        < AddReview />
+        {/* < Home /> */}
+        {/* < AddReview /> */}
         {/* < Success /> */}
-        {/* < Reviews /> */} 
+        {/* < Reviews />  */}
+        <RouterProvider router={router} />
       </div>
   );
 }

@@ -12,7 +12,7 @@ const CustomRating = styled(Rating)(({ theme }) => ({
 const Review = ({messName, image, dishName, discription, rating}) => {
   return (
     <div className='my-2 border border-black rounded-md w-[80%]'>
-      <div className='mess_name font-bold text-xl text-center py-1.5 border-b border-b-black'>
+      <div className='mess_name font-medium text-xl text-center py-1.5 border-b border-b-black'>
       {messName}
       </div>
       <div className='flex'>

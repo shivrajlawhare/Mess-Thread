@@ -3,6 +3,7 @@ import dish1 from "../assets/dish1.png";
 import dish2 from "../assets/dish2.png";
 import dish3 from "../assets/dish3.png";
 import dish4 from "../assets/dish4.png";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -48,9 +49,10 @@ const LandingPage = () => {
             Can post reviews about the food you had and help others
           </p>
         </div>
-        <button className="bg-[#982323] hover:bg-[#580000] rounded-md py-3 text-2xl text-white font-normal w-[80%]">
+        <Link className="text-center bg-[#982323] hover:bg-[#580000] rounded-md py-3 text-2xl text-white font-normal w-[80%]" to="/home">Let's Go!!</Link>
+        {/* <button className="bg-[#982323] hover:bg-[#580000] rounded-md py-3 text-2xl text-white font-normal w-[80%]">
           Let's Go!!
-        </button>
+        </button> */}
       </div>
     </div>
   );

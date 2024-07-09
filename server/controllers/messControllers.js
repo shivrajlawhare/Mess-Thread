@@ -18,7 +18,7 @@ export const createNewMess = async(req, res) => {
         }
         const newMess = new Mess(newMessData);
         const savedMess = await newMess.save();
-
+        console.log(savedMess);
         res.status(200).json(savedMess);
     } catch (error) {
         res.status(404).json({error})

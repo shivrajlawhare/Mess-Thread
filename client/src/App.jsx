@@ -37,7 +37,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div
-        className="absolute inset-0 bg-cover bg-center h-[100vh] md:w-[25%] md:mx-auto  md:rounded-lg md:shadow-lg"
+        className="absolute inset-0 bg-cover bg-center h-[100vh] md:w-[25%] md:mx-auto  md:rounded-lg md:shadow-lg overflow-scroll"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         {/* < LandingPage /> */}

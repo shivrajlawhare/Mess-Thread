@@ -44,18 +44,7 @@ const Reviews = () => {
     setSelectedValue(event.target.value);
   };
 
-  if (loadingMessArray) {
-    return (
-      <div>
-        <Navbar />
-        <div className="mt-5 flex flex-col items-center">
-          <CircularProgress />
-          <div>Loading Mess/Restaurant data...</div>
-        </div>
-      </div>
-    );
-  }
-
+  
   return (
     <div>
       <Navbar />

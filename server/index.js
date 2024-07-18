@@ -27,16 +27,24 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
+// Schedule cron job with time zone
+
+process.env.TZ = "Asia/Kolkata";
 cron.schedule("0 0 * * *", async () => {
   try {
+    console.log("Cron job started. Current time:", new Date());
+
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
 
-    await Review.deleteMany({ createdAt: { $lt: yesterday } });
-    console.log("Deleted reviews older than one day.");
+    const result = await Review.deleteMany({ createdAt: { $lt: yesterday } });
+    console.log(`Deleted ${result.deletedCount} reviews older than one day.`);
   } catch (error) {
     console.error("Error deleting old reviews:", error);
   }
+}, {
+  scheduled: true,
+  timezone: "Asia/Kolkata" // Replace with your desired time zone
 });
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
